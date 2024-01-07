@@ -21,3 +21,8 @@ class EnrolmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrolment
         exclude = []
+
+class StudentEnrolmentListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Enrolment
+        fields = ['course', 'period']
