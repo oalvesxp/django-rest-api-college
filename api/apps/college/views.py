@@ -2,7 +2,7 @@ from rest_framework import viewsets, generics
 from apps.college.models import \
     Student, Course, Enrolment
 from apps.college.serializer import \
-    StudentSrializer, CourseSerializer, EnrolmentSerializer, StudentEnrolmentListSerializer
+    StudentSrializer, CourseSerializer, EnrolmentSerializer, StudentEnrolmentListSerializer, CourseStudentListSerializer
 
 class StudentsViewset(viewsets.ModelViewSet):
     '''Exibindo todos os alunos e alunas'''
@@ -25,3 +25,10 @@ class StudentEnrolmentList(generics.ListAPIView):
         queryset = Enrolment.objects.filter(student_id=self.kwargs['pk'])
         return queryset
     serializer_class = StudentEnrolmentListSerializer
+
+class CourseStudentList(generics.ListAPIView):
+    '''Exibindo alunos matrículados em um determinado curso'''
+    def get_queryset(self):
+        queryset = Enrolment.objects.filter(course_id=self.kwargs['pk'])
+        return queryset
+    serializer_class = CourseStudentListSerializer
