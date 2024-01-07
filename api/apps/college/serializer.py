@@ -23,6 +23,11 @@ class EnrolmentSerializer(serializers.ModelSerializer):
         exclude = []
 
 class StudentEnrolmentListSerializer(serializers.ModelSerializer):
+    course = serializers.ReadOnlyField(source='course.description')
+    period = serializers.SerializerMethodField()
     class Meta:
         model = Enrolment
         fields = ['course', 'period']
+
+    def get_period(self, object):
+        return object.get_period_display()
