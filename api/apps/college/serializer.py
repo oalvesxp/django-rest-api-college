@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from apps.college.models import \
-    Student, Course
+    Student, Course, Enrolment
 
 class StudentSrializer(serializers.ModelSerializer):
     class Meta:
@@ -16,3 +16,8 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = '__all__'
+
+class EnrolmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Enrolment
+        exclude = []
