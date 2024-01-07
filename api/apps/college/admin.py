@@ -1,6 +1,6 @@
 from django.contrib import admin
 from apps.college.models import \
-    Student, Course
+    Student, Course, Enrolment
 
 class Students(admin.ModelAdmin):
     list_display = (
@@ -26,3 +26,9 @@ class Courses(admin.ModelAdmin):
     search_fields = ('code_course',)
 
 admin.site.register(Course, Courses)
+
+class Enrolments(admin.ModelAdmin):
+    list_display = ('id', 'student', 'course', 'period')
+    list_display_links = ('id',)
+
+admin.site.register(Enrolment, Enrolments)
